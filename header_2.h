@@ -13,9 +13,9 @@ void searchFlat(char name[], struct Flat *flats, int count)
             printf("  Number:  %d\n", flats[i].number);
             printf("  Name:    %s\n", flats[i].name);
             printf("  Rooms:   %d\n", flats[i].rooms);
-            printf("  Owner:   %s\n", flats[i].Owner);
+            printf("  Owner:   %s\n", flats[i].owner);
             printf("  Street:  %s\n", flats[i].street);
-            printf("  Rent:    %.2f\n", flats[i].Rent);
+            printf("  Rent:    %.2f\n", flats[i].rent);
             printf("  Booked:  %s\n", flats[i].booked ? "Yes" : "No");
             return;
         }
@@ -35,9 +35,9 @@ void BookFlat(struct Flat *flats, int num)
             printf("  Number:  %d\n", flats[i].number);
             printf("  Name:    %s\n", flats[i].name);
             printf("  Rooms:   %d\n", flats[i].rooms);
-            printf("  Owner:   %s\n", flats[i].Owner);
+            printf("  Owner:   %s\n", flats[i].owner);
             printf("  Street:  %s\n", flats[i].street);
-            printf("  Rent:    %.2f\n", flats[i].Rent);
+            printf("  Rent:    %.2f\n", flats[i].rent);
             return;
         }
     }
