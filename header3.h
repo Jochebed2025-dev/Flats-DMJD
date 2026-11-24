@@ -1,11 +1,12 @@
+#ifndef header3_h
+#define  header3_h
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "flats.h"
-#ifndef header3_h
-#define  header3_h
-void write_to_file(struct Flat* flats,int n){
-    FILE *fpnt = fopen("Flats.txt","a");
+#include "flat.h"
+
+void write_to_file(struct Flat* flats,int max_flats){
+    FILE *fpnt = fopen("Flats.txt","r");
     if(fpnt == NULL){
         printf("File wasn't created");
         return;
@@ -21,6 +22,7 @@ void write_to_file(struct Flat* flats,int n){
 );
     }    
         fclose(fpnt);
+    printf("Flats have been saved.\n")
     }
 
 void read_from_file(struct Flat *flats,int n){
