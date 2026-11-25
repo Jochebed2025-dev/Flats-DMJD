@@ -83,6 +83,4 @@ void read_from_file(struct Flat *flats,int n) {
     }
 }
 #endif
-}
 
-#endif
