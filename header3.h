@@ -5,44 +5,44 @@
 #include <string.h>
 #include "flat.h"
 
-void write_to_file(struct Flat* flats,int max_flats){
-    FILE *fpnt = fopen("Flats.txt","r");
+void write_to_file(struct Flat* flats,int n){
+    FILE *fpnt = fopen("Flats.txt","w");
     if(fpnt == NULL){
         printf("File wasn't created");
         return;
     } for (int i=0;i<n;i++){
-        fprintf(fpnt,"%d;%d;%s;%d;%s;%s;%2.f\n",
+        fprintf(fpnt,"%d;%d;%s;%s;%s;%s;%.2lf\n",
             flats[i].number,
             flats[i].rooms,
             flats[i].name,
             flats[i].owner,
             flats[i].booked ? "Yes": "No",
             flats[i].street,
-            flats[i].rent, 
-);
+            flats[i].rent
+        );
     }    
         fclose(fpnt);
-    printf("Flats have been saved.\n")
+    printf("Flats have been saved.\n");
     }
 
-void read_from_file(struct Flat *flats,int n){
-   FILE *fpnt= fopen("Flats.txt","r");
+void read_from_file(struct Flat *flats,int n) {
+    FILE *fpnt= fopen("Flats.txt","r");
     if(fpnt == NULL){
-      printf("File wasn't created");
-      return;
+        printf("File wasn't created\n");
+        return;
     }
-   char line[100];
-   int i=0;
+    char line[100];
+    int i=0;
 
-if (fpnt != NULL){
-while (fgets(line, 100, fpnt)&& i<n)
+    if (fpnt != NULL){
+        while (fgets(line, 100, fpnt)&& i<n)
         {
             char *token;
             token = strtok(line, ";");
             int flag=1;
             while( token != NULL )
-            { 
-        
+            {
+
                 if(flag==1){
                     flats[i].number=atoi(token);}
                 else if(flag==2){
@@ -64,22 +64,25 @@ while (fgets(line, 100, fpnt)&& i<n)
                     if(token[strlen(token)-1]=='\n'){
                         token[strlen(token)-1]='\0';
                     }
-                        flats[i].rent= atof(token);
+                    flats[i].rent= atof(token);
                 }
                 token = strtok(NULL, ";");
                 flag++;
-              
-        
- 
-            if(flag>7){
-                flag=1;
+
+
+
+                if(flag>7){
+                    flag=1;
+                }
             }
+            i++;
+
+        }
+        fclose(fpnt);
+
     }
-       i++;
-
 }
-    fclose(fpnt);
-
+#endif
 }
 
 #endif
