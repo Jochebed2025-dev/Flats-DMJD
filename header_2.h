@@ -1,53 +1,58 @@
+#ifndef HEADER_2
+#define HEADER_2
 #include <stdio.h>
 #include <string.h>
 #include "flat.h"
 #include "header_1.h"
 
-void searchFlat(char name[], struct Flat *flats, int count)
+void searchFlat(char name[], struct Flat *head)
 {
-    for (int i = 0; i < count; i++)
+    for (struct Flat *current = head; current != NULL; current = current->next)
     {
-        if (strstr( flats[i].name,name) != NULL)
+        if (strstr(current->name, name) != NULL)
         {
             printf("\nYour flat has been found!\n");
-            printflats(&flats[i]);
+            printflats(current);
             return;
         }
     }
     printf("No flat found with the name %s\n", name);
 }
-void BookFlat(struct Flat *flats, int number, int num)
+
+void BookFlat(struct Flat *head, int number)
 {
-    for (int i = 0; i < num; i++)
+    for (struct Flat *current = head; current != NULL; current = current->next)
     {
-        if (flats[i].number == number)
+        if (current->number == number)
         {
-            if (flats[i].booked == true)
+            if (current->booked == true)
             {
                 printf("Unfortunately, this flat is already booked!\n");
                 return;
             }
-            flats[i].booked = true;
+            current->booked = true;
             printf("\nYour flat has been booked, Thank You!\n");
-            printf("Flat number: %d\n", flats[i].number);
-            printf("Flat name: %s\n", flats[i].name);
-            printf("Monthly rent: %.2f\n", flats[i].rent);
+            printf("Flat number: %d\n", current->number);
+            printf("Flat name: %s\n", current->name);
+            printf("Monthly rent: %.2f\n", current->rent);
             return;
         }
     }
     printf("Sorry, flat %d was not found!\n", number);
 }
-float CalculateRent(struct Flat *flats, int month, int number, int num)
+
+float CalculateRent(struct Flat *head, int month, int number)
 {
-    for (int i = 0; i < num; i++)
+    for (struct Flat *current = head; current != NULL; current = current->next)
     {
-        if (flats[i].number == number)
+        if (current->number == number)
         {
-            printf("\nFlat selected: %s\n", flats[i].name);
-            printf("Monthly rent: %.2f\n", flats[i].rent);
-            return flats[i].rent * month;
+            printf("\nFlat selected: %s\n", current->name);
+            printf("Monthly rent: %.2f\n", current->rent);
+            return current->rent * month;
         }
     }
-    printf("No flats with %d were found!", number);
+    printf("No flats with %d were found!\n", number);
     return -1;
 }
+#endif
