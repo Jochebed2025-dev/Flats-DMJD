@@ -11,7 +11,8 @@ struct Flat *createFlat(int number, int rooms, const char name[], const char own
 
     if (newFlat == NULL)
     {
-        printf("Memory allocation failed") return NULL
+        printf("Memory allocation failed");
+        return NULL;
     }
 
     newFlat->number = number;
