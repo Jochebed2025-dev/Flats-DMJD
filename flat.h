@@ -9,5 +9,6 @@ struct Flat {
     bool booked;
     char street[50];
     float rent;
+    struct Flat *next;
 };
 #endif
