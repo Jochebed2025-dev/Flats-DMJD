@@ -4,7 +4,6 @@
 #include <string.h>
 #include "flat.h"
 
-// Creates ne new flat in memory
 struct Flat *createFlat(int number, int rooms, const char name[], const char owner[],
                         bool booked, const char street[], float rent)
 {
