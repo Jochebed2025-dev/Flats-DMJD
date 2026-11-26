@@ -2,30 +2,23 @@
 #include <string.h>
 #include "flat.h"
 
-void searchFlat(char name[], struct Flat *flats, int count)
+void searchFlat(char name[], struct Flat *head)
 {
-    for (int i = 0; i < count; i++)
+    for (struct Flat *current = head; current != NULL; current->next)
     {
         if (strcmp(name, flats[i].name) == 0)
         {
-            printf("The flat number is %d\n", flats[i].number);
-            printf("Flat found:\n");
-            printf("  Number:  %d\n", flats[i].number);
-            printf("  Name:    %s\n", flats[i].name);
-            printf("  Rooms:   %d\n", flats[i].rooms);
-            printf("  Owner:   %s\n", flats[i].owner);
-            printf("  Street:  %s\n", flats[i].street);
-            printf("  Rent:    %.2f\n", flats[i].rent);
-            printf("  Booked:  %s\n", flats[i].booked ? "Yes" : "No");
+            printf("You have flat has been found\n")
+                printflats(current);
             return;
         }
     }
     printf("No flat found with the name %s\n", name);
 }
 
-void BookFlat(struct Flat *flats, int num)
+void BookFlat(struct Flat *head)
 {
-    for (int i = 0; i < num; i++)
+    for (struct Flat *current = head; current != NULL; current = current->next)
     {
         if (!flats[i].booked)
         {
@@ -44,9 +37,9 @@ void BookFlat(struct Flat *flats, int num)
     printf("Sorry, all flats are already booked.\n");
 }
 
-float CalculateRent(struct Flat *flats, int month, int num)
+float CalculateRent(struct Flat *head, int month, int num)
 {
-    for (int i = 0; i < MAX_FLATS; i++)
+    for (struct Flat *current = head; current != NULL; current = current->next)
     {
         if (flats[i].number == num)
         {
